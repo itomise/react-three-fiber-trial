@@ -1,13 +1,24 @@
-import React, { useRef } from 'react'
-import { Canvas, useFrame } from 'react-three-fiber'
+import React from 'react'
+import { css, jsx, Global } from '@emotion/core'
+import emotionReset from 'emotion-reset'
+import Work from './work'
 
+const globalStyles = css`
+  ${emotionReset}
+  *, *::after, *::before {
+    box-sizing: border-box;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+  }
+`
 
-
-const App =() => {
+const App = () => {
   return (
-    <>
-      test
-    </>
+    <div>
+      <Global styles={globalStyles} />
+      <Work />
+    </div>
   );
 }
 
