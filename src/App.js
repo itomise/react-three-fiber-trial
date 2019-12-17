@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useRef } from 'react'
+import { Canvas, useFrame } from 'react-three-fiber'
+
+
 
 const App =() => {
   return (
-    <div className="App">
+    <>
       test
-    </div>
+    </>
   );
 }
 
-export default App;
+export default App
