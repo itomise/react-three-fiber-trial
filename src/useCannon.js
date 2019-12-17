@@ -10,7 +10,7 @@ export function Provider({ children }) {
   useEffect( () => {
     world.broadphase = new CANNON.NaiveBroadphase()
     world.solver.iterations = 10
-    world.gravity.set(0, 0, -25)
+    world.gravity.set(0, 0, -15)
   }, [world])
 
   // Run world stepper every frame
@@ -33,7 +33,7 @@ export function useCannon({ ...props }, fn, deps = []) {
     world.addBody(body)
     // Remove body on unmount
     return () => world.removeBody(body)
-  }, deps)
+  }, deps) // eslint-disable-line
 
   useRender( () => {
     if (ref.current) {

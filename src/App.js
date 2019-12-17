@@ -1,5 +1,5 @@
 import React from 'react'
-import { css, jsx, Global } from '@emotion/core'
+import { css, jsx, Global } from '@emotion/core' // eslint-disable-line
 import emotionReset from 'emotion-reset'
 import Work from './work'
 
