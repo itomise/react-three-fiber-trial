@@ -18,6 +18,7 @@ const theme1 = {
   backgroundColor: `${Utils.rgbTo16(105, 185, 210)}`
 }
 
+// noise sphere 的な物
 const Thing = () => {
   const ref = useRef()
   useEffect( () => {
@@ -60,6 +61,45 @@ const Thing = () => {
     </mesh>
   )
 }
+const TweenCircle = () => {
+  const ref = useRef()
+  useEffect( () => {
+    const tl = new TimelineMax();
+    tl.to( ref.current.position, 1, {
+      y:-40,
+      yoyo:true,
+      repeat: -1
+    })
+  }, [])
+  const _uniform = {
+    u_time: { type: 'f', value: 1.0 },
+    u_resolution: { type: 'v2', value: new THREE.Vector2() },
+    u_mouse: { type: 'v2', value: new THREE.Vector2() },
+  }
+  const [uniform, setUniform] = useState(_uniform)
+
+  useEffect(() => {
+    ref.current.position.z = -10
+  }, [])
+
+  useFrame( ({ clock }) => {
+    // ref.current.position.x += Math.cos(clock.getElapsedTime()) * 3
+    // ref.current.position.y += Math.sin(clock.getElapsedTime()) * 3
+    // ref.current.position.z += Math.cos(clock.getElapsedTime()) * 3
+    ref.current.rotation.y += 0.01
+    ref.current.width += Math.cos(clock.getElapsedTime()) * 3
+    setUniform(clock.getElapsedTime() * 0.01)
+  })
+
+  return (
+    <mesh ref={ref}>
+      <boxGeometry attach='geometry' position={{x: 100}} args={[100, 100, 100]} />
+      <meshNormalMaterial
+        attach='material'
+      />
+    </mesh>
+  )
+}
 
 const Work = () => {
 
@@ -76,7 +116,8 @@ const Work = () => {
           intensity={1.9}
           position={[10, 20, 100]}
         />
-        <Thing />
+        {/* <Thing /> */}
+        <TweenCircle />
       </Canvas>
     </div>
   )
