@@ -11,7 +11,7 @@ const theme = css`
 const theme1 = {
   width: '100vw',
   height: '100vh',
-  backgroundColor: '#000'
+  backgroundColor: '#ffffff'
 }
 
 const Thing = () => {
@@ -36,6 +36,9 @@ const Work = () => {
   return (
     <div css={theme} style={theme1}>
       <Canvas camera={{ position: [0, 0, 1000] }}>
+        <ambientLight
+          color="ffffff"
+        />
         <pointLight
           color='#ffffff'
           intensity={1}
